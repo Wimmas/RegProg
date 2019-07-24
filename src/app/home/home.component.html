@@ -1,23 +1,30 @@
 <div class="row">
-        <div class="col-md-4 offset-md-1">
-          <div class="input-group">
-            <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-            <div class="input-group-append">
-            </div>
-          </div>
+    <div class="col-md-4 offset-md-1">
+        <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+        <div class="input-group-append">
         </div>
-      </div>
+        </div>
+    </div>
+</div>
       
-      <div class="list-group users-list">
-        <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-            <div class="col col-md-8 text-col">
-              <h5 class="mb-1">{{item.payload.doc.data().firstName}} {{item.payload.doc.data().lastName}}</h5>
-              <small>ID Number: {{item.payload.doc.data().idNumber}}</small><br>
-              <small>Email: {{item.payload.doc.data().email}}</small><br>
-              <small>Password: {{item.payload.doc.data().password}}</small>
-            </div>
-          </div>
+<div class="list-group users-list">
+    <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="row">
+        <div class="col col-md-8 text-col">
+            <h5 class="mb-1">{{item.payload.doc.data().firstName}} {{item.payload.doc.data().lastName}}</h5>
+            <small>ID Number: {{item.payload.doc.data().idNumber}}</small><br>
+            <small>Email: {{item.payload.doc.data().email}}</small><br>
+            <small>Password: {{item.payload.doc.data().password}}</small>
         </div>
-      </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <button mat-raised-button class="submit-button" color="primary" type="button"  [routerLink]="['/login']" routerLinkActive="router-link-active">Logout</button>
+    </div>
+</div>
       
