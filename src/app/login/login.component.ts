@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
-    public firebaseService: FirebaseService) { }
+    public firebaseService: FirebaseService,
+    private cookieService: CookieService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -46,7 +48,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form){
-    this.formSubmitted = true;
     if (!form.valid) {
       return;
     }
@@ -55,6 +56,8 @@ export class LoginComponent implements OnInit {
       res => {
         if(res.length > 0)
         {
+          this.cookieService.set('Status','Logged In');
+
           this.correctDetails = true;
           this.resetFields();
           this.router.navigate(['/home']);
@@ -65,5 +68,7 @@ export class LoginComponent implements OnInit {
         }
       }
     )
+
+    this.formSubmitted = true;
   }
 }

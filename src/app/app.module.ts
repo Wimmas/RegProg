@@ -16,6 +16,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatInputModule, MatSliderModule, MatDialogModule } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { LoginGuard } from './guards/login-guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     //RouterModule.forRoot(rootRouterConfig, { useHash: false }),
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    LoginGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

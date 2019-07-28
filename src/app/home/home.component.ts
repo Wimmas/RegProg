@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { Router, Params } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   constructor( 
     public firebaseService: FirebaseService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
     ) { }
 
   ngOnInit() {
@@ -34,5 +36,10 @@ export class HomeComponent implements OnInit {
     .subscribe(result => {
       this.items = result;
     })
+  }
+
+  Logout(){
+    this.cookieService.deleteAll();
+    this.router.navigate(['/login']);
   }
 }
